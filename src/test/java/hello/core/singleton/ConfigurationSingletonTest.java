@@ -36,6 +36,13 @@ public class ConfigurationSingletonTest {
          * AppConfig의 자바 코드를 보면 분명히 각각 2번 'new MemoryMemberRepository' 호출해서 다른 인스턴스가 생성되어야 하는데?
          * 어떻게 된 일일까? 혹시 두번 호출이 안되는 것일까? 확인해보겠습니다.
          */
+    }
 
+    @Test
+    void configurationDeep() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        System.out.println("bean.getClass() = " + bean.getClass());
     }
 }
