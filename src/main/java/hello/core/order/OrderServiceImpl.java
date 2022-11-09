@@ -9,11 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
@@ -44,7 +49,16 @@ public class OrderServiceImpl implements OrderService {
      *                * 참고: @Autowired 의 기본 동작은 주입할 대상이 없으면 오류가 발생한다.
      *                       주입할 대상이 없어도 동작하게 하려면 @Autowired(required = false) 로 지정하면 된다.
      *
-     *     * 필드 주입
-     *     * 일반 메서드 주입
+     *     * 필드 주입 - 이름 그대로 필드에 바로 주입하는 방법이다.
+     *       * 특징: 코드가 간결해서 많은 개발자들을 유혹하지만 외부에서 변경이 불가능해서 테스트 하기 힘들다는 치명적인 단점이 있다.
+     *              DI 프레임워크가 없으면 아무것도 할 수 없다.
+     *              사용하지 말자!
+     *                * 애플리케이션의 실제 코드와 관계 없는 테스트 코드 or
+     *                * 스프링 설정을 목적으로 하는 @Configuration 같은 곳에서만 특별한 용도로 사용
+     *
+     *     * 일반 메서드 주입 - 일반 메서드를 통해서 주입 받을 수 있다.
+     *       * 특징
+     *         * 한번에 여러 필드를 주입 받을 수 있다.
+     *         * 일반적으로 잘 사용하지 않는다.
      */
 }
