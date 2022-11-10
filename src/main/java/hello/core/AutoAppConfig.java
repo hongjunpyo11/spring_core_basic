@@ -17,10 +17,10 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
 
-    @Bean(name = "memoryMemberRepository")
-    MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    }
+//    @Bean(name = "memoryMemberRepository")
+//    MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
 
     /**
      * 수동 빈 등록 vs 자동 빈 등록
