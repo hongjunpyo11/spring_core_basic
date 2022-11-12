@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("fixDiscountPolicy")
 public class FixDiscountPolicy implements DiscountPolicy{
 
     private int discountFixAmount = 1000; // 1000원 할인인
@@ -52,4 +51,13 @@ public class FixDiscountPolicy implements DiscountPolicy{
  * 1. @Qualifier끼리 매칭
  * 2. 빈 이름 매칭
  * 3. NoSuchBeanDefinitionException 예외 발생
- */
+ *
+ * @Primary 사용
+ *   * @Primary 는 우선순위를 정하는 방법이다. @Autowired 시에 여러 빈이 매칭되면 @Primary 가 우선권을
+ *     가진다.
+ *
+ * 우선순위
+ * @Primary 는 기본값 처럼 동작하는 것이고, @Qualifier 는 매우 상세하게 동작한다. 이런 경우 어떤 것이 우선권을 가져갈까?
+ * 스프링은 자동보다는 수동이, 넒은 범위의 선택권 보다는 좁은 범위의 선택권이 우선 순위가 높다.
+ * 따라서 여기서도 @Qualifier 가 우선권이 높다.
+*/
