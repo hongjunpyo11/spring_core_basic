@@ -2,9 +2,11 @@ package hello.core.discount;
 
 import hello.core.member.Grade;
 import hello.core.member.Member;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+@Qualifier("fixDiscountPolicy")
 public class FixDiscountPolicy implements DiscountPolicy{
 
     private int discountFixAmount = 1000; // 1000원 할인인
@@ -41,4 +43,13 @@ public class FixDiscountPolicy implements DiscountPolicy{
  * @Autowired 필드 명 매칭 정리
  * 1. 타입 매칭
  * 2. 타입 매칭의 결과가 2개 이상일 때 필드 명, 파라미터 명으로 빈 이름 매칭
+ *
+ * @Qualifier 사용
+ *   * @Qualifier 는 추가 구분자를 붙여주는 방법이다. 주입시 추가적인 방법을 제공하는 것이지 빈 이름을
+ *     변경하는 것은 아니다.
+ *
+ * @Qualifier 사용 정리
+ * 1. @Qualifier끼리 매칭
+ * 2. 빈 이름 매칭
+ * 3. NoSuchBeanDefinitionException 예외 발생
  */
